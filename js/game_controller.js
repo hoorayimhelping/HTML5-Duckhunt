@@ -76,7 +76,9 @@ var GameController = Class.extend({
 
         this.hitSound = "WilhelmScream_64kb.mp3";
         this.gunSound = "gun-gunshot-01.mp3";
-        this.loseSound = new Audio("WilhelmScream_64kb.mp3");
+        this.loseSound = new Audio("WilhelmScream_64kb.mp3")
+
+        this.flashNextFrame = false;
 
         this.update();
         var self = this;
@@ -92,7 +94,9 @@ var GameController = Class.extend({
                         //duck.explode();
                     }
                 }
-            )
+            );
+            self.flashNextFrame = 3;
+
         };
 
     },
@@ -141,13 +145,15 @@ var GameController = Class.extend({
     // rendering calls go here 
     render: function() {
         var context = this.context;
-
-        if (this.isGameOver) {
+        if (this.flashNextFrame > 0) {
+            this.context.fillStyle = '#ffffff';
+            this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
+        } else if (this.isGameOver) {
             this.context.fillStyle = '#000000';
             this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
             this.context.fillStyle = '#fff';
             this.context.font = "24px courier";
-            this.context.fillText("Level " + (this.nextLevel - 1) + ', Kills: ' + this.totalKills, 10, 20 );
+            this.context.fillText("Level " + (this.nextLevel - 1) + ', Kills: ' + this.totalKills, 10, 22 );
         } else {
             this.context.fillStyle = '#b0e7fa';
             this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
@@ -156,11 +162,13 @@ var GameController = Class.extend({
             })
             this.context.fillStyle = '#000000';
             this.context.font = "24px courier";
-            this.context.fillText("Level " + (this.nextLevel - 1) + ', Kills: ' + this.totalKills, 10, 20 );
+            this.context.fillText("Level " + (this.nextLevel - 1) + ', Kills: ' + this.totalKills, 10, 22 );
             this.context.fillStyle = '#33CC33';
             this.context.fillRect(0,this.canvas.height-50,this.canvas.width,50);
             this.context.fillStyle = '#996633';
             this.context.fillRect(0,this.canvas.height-10,this.canvas.width,10);
         }
+        this.flashNextFrame--;
+
     }
 });
