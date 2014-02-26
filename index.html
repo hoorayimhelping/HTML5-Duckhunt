@@ -11,14 +11,22 @@
     <script type="text/javascript" src="js/game_controller.js"></script>
 </head>
 <body>
-    <canvas id="canvas" width="600" height="400">
+    <canvas id="canvas" width="800" height="600">
         bro, do you even modern browser?
     </canvas>
 
     <img src="duck.jpg" id="duck_image" style="display: none;" />
 
+    <img id="gameover" src="http://25.media.tumblr.com/tumblr_mdml8u6m3B1r0ne4fo1_250.gif" />
+        <img id="gamestart" src="http://b.vimeocdn.com/ts/867/310/86731086_640.jpg" />
+
     <script type="text/javascript">
-        new GameController(document.getElementById('canvas'));
+        document.getElementById("gamestart").onclick=function(){
+            document.getElementById("gamestart").style.display="none";
+            new GameController(document.getElementById('canvas'));
+        }
+
     </script>
+
 </body>
 </html>
