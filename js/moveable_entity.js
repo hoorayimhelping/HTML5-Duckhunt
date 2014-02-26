@@ -4,7 +4,7 @@ var MoveableEntity = Class.extend({
         this.y = coords.y;
         this.width = coords.width;
         this.height = coords.height;
-    }
+    },
 
     // override
     update: function() {},
