@@ -1,7 +1,7 @@
 var Duck = MoveableEntity.extend({
    init: function(maxArea, level) {
        this._super({width: 50, height:50, x:Math.random() * maxArea.width, y:maxArea.height-50});
-       this.speed = (Math.random() * level) + 1;
+       this.speed = (Math.random() * (level/2)) + 1;
        this.maxArea = maxArea;
        this.targetCoords = {x: Math.random() * this.maxArea.width, y: Math.random() * this.maxArea.height};
        this.dead = false;
@@ -40,7 +40,7 @@ var Duck = MoveableEntity.extend({
             this.targetCoords = {x: Math.random() * this.maxArea.width, y: -100};
             this.speed = 10;
         } else {
-            this.targetCoords = {x: Math.random() * this.maxArea.width, y: Math.random() * (this.maxArea.height - 100)};
+            this.targetCoords = {x: Math.random() * this.maxArea.width, y: Math.random() * (this.maxArea.height - 150)};
         }
     },
 
@@ -84,7 +84,6 @@ var GameController = Class.extend({
             //self.gunSound.play();
             new Audio(self.gunSound).play();
             self.ducks.forEach(function(duck, index) {
-                    console.log(event);
                     if (duck.isHit(event.offsetX, event.offsetY)){
                         new Audio(self.hitSound).play();
                         self.ducks.remove(index)

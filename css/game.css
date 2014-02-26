@@ -13,8 +13,8 @@ body {
 #gameover, #gamestart {
     position: absolute;
     left: 50%;
-    margin-left:-400px;
+    margin-left:-600px;
     top: 80px;
-    height: 600px;
-    width: 800px;
+    height: 800px;
+    width: 1200px;
 }
